@@ -150,14 +150,14 @@ def get_recovery_id(msg_hash, r, s, eth_checksum_addr, chainid) -> dict:
     return {}
 
 
-def get_tx_params(dst_address: str, amount: int, nonce: int,
+def get_tx_params(dst_address: str, amount: int, nonce: int, data: str, gasLimit: int,
                   chainid: int, type: int, max_fee_per_gas: int, max_priority_fee_per_gas: int) -> dict:
     transaction = {
         'nonce': nonce,
         'to': dst_address,
         'value': w3.toWei(amount, 'ether'),
-        'data': '0x00',
-        'gas': 160000,
+        'data': data,
+        'gas': gasLimit,
         'maxFeePerGas': max_fee_per_gas,
         'maxPriorityFeePerGas': max_priority_fee_per_gas,
         'type': type,
