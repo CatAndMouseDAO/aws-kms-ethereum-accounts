@@ -60,6 +60,10 @@ def lambda_handler(event, context):
 
         nonce = event.get('nonce')
 
+        gasLimit = event.get('gasLimit')
+
+        data = event.get('data')
+        
         # optional params
         chainid = event.get('chainid')
         type = event.get('type')
@@ -75,6 +79,8 @@ def lambda_handler(event, context):
         # collect rawd parameters for Ethereum transaction
         tx_params = get_tx_params(dst_address=dst_address,
                                   amount=amount,
+                                  data=data,
+                                  gasLimit=gasLimit,
                                   nonce=nonce,
                                   chainid=chainid,
                                   type=type,
