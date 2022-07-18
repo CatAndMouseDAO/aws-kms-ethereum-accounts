@@ -18,4 +18,4 @@ jobs:
       - name: Install dependencies
         run: npm install -g aws-cdk && pip install -r requirements.txt
       - name: Deploy
-        run: cdk deploy
+        run: cdk deploy --require-approval never
