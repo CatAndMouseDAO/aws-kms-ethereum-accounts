@@ -3,6 +3,7 @@
 
 import logging
 import os
+import json
 
 from lambda_helper import (assemble_tx,
                            get_params,
@@ -36,7 +37,13 @@ def lambda_handler(event, context):
         pub_key = get_kms_public_key(key_id)
         eth_checksum_address = calc_eth_address(pub_key)
 
-        return {'eth_checksum_address': eth_checksum_address}
+        return {
+            "statusCode": 200,
+            "body": json.dumps({'eth_checksum_address': eth_checksum_address}),
+            "headers": {
+                "Content-Type": "application/json"
+            }
+        }
 
 
     # {"operation": "send",
